@@ -34,7 +34,7 @@ RSpec.describe StringCalculator do
         it "returns sum with multiple multi-character delimiters" do
             expect(calculator.add("//[***][%%]\n1***2%%3")).to eq(6)
         end
-        
+
         it 'raises an error when negative numbers are included' do
             expect {
                 calculator.add("1,-2,3,-5")
@@ -47,5 +47,10 @@ RSpec.describe StringCalculator do
             }.to raise_error(RuntimeError, "negatives not allowed: -4, -7, -1")
         end
 
+        it 'returns the number of times add has been called' do
+            calculator.add("1,2")
+            calculator.add("3")
+            expect(calculator.get_called_count).to eq(2)
+        end
     end 
 end 
