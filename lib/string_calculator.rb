@@ -9,17 +9,19 @@ class StringCalculator
       delimiter_section, numbers_part = input.split("\n", 2)
 
       if delimiter_section.include?("[")
-        # multiple delimiters case
         delimiters = delimiter_section.scan(/\[(.+?)\]/).flatten
         delimiter_regex = delimiters.map { |d| Regexp.escape(d) }.join('|')
       else
-        # single char delimiter
         delimiter_regex = Regexp.escape(delimiter_section[2])
       end
     end
 
-    # split by delimiter(s) or newline
     numbers = numbers_part.split(/#{delimiter_regex}|\n/).map(&:to_i)
+
+    negatives = numbers.select { |n| n < 0 }
+    unless negatives.empty?
+      raise "negatives not allowed: #{negatives.join(', ')}"
+    end
 
     numbers.sum
   end
