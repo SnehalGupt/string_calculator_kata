@@ -1,0 +1,13 @@
+# Ruby
+*.gem
+.bundle/
+/log/
+/tmp/
+/vendor/
+.DS_Store
+.idea/
+.vscode/
+coverage/
+spec/reports/
+*.swp
+.rspec_status
