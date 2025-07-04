@@ -1,5 +1,10 @@
 class StringCalculator
+  def initialize
+    @call_count = 0
+  end
+
   def add(input)
+    @call_count += 1
     return 0 if input.empty?
 
     numbers_part = input
@@ -24,5 +29,9 @@ class StringCalculator
     end
 
     numbers.sum
+  end
+
+  def get_called_count
+    @call_count
   end
 end
