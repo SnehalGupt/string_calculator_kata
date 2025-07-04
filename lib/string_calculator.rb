@@ -21,8 +21,11 @@ class StringCalculator
       end
     end
 
-    numbers = numbers_part.split(/#{delimiter_regex}|\n/).map(&:to_i)
-
+    # numbers = numbers_part.split(/#{delimiter_regex}|\n/).map(&:to_i)
+    numbers = numbers_part
+            .split(/#{delimiter_regex}|\n/)
+            .map(&:to_i)
+            .select { |n| n <= 1000 }
     negatives = numbers.select { |n| n < 0 }
     unless negatives.empty?
       raise "negatives not allowed: #{negatives.join(', ')}"
